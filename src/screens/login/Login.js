@@ -1,8 +1,12 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
+import Header from "../../common/header/Header";
 
-class Login extends Component{
+class Login extends Component {
     render() {
-        return <span>Login Page</span>
+        return <div>
+            <div> <Header/> </div>
+            <div> <span>Login Page</span> </div>
+        </div>;
     }
 }
 
