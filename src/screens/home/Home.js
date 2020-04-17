@@ -12,7 +12,7 @@ class Home extends Component {
         }
         if (this.props.location.state.loginSuccess === true) {
             return <div>
-                <div><Header/></div>
+                <div><Header isLoggedIn={true}/></div>
                 <div><span>Success</span></div>
             </div>
         }
