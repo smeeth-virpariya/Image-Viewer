@@ -46,7 +46,7 @@ class Login extends Component {
 
     render() {
         if (this.state.loginSuccess === true) {
-            return <Redirect to='/home'/>
+            return <Redirect to={{pathname: '/home', state: {loginSuccess: true}}}/>
         }
         return <div>
             <div><Header/></div>
@@ -72,7 +72,8 @@ class Login extends Component {
                         <br/>
                         <FormControl required className='login-form-control'>
                             <InputLabel htmlFor='password'>Password</InputLabel>
-                            <Input id='password' name='password' type='password' onChange={this.onPasswordFieldChange}/>
+                            <Input id='password' name='password' type='password'
+                                   onChange={this.onPasswordFieldChange}/>
                             <FormHelperText className={this.state.passwordHelperTextDisplay}><span
                                 className='form-helper-text-red-color'>required</span></FormHelperText>
                         </FormControl>

@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 
 //Router import for redirection.
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 
 //Imports of different pages in the application
 import Login from "./screens/login/Login";
@@ -12,10 +12,12 @@ import Home from "./screens/home/Home";
  */
 class ImageViewer extends Component {
     render() {
-        return <Router>
-            <Route exact path='/' render={(props) => <Login/>}/>
-            <Route exact path='/home' render={(props) => <Home/>}/>
-        </Router>
+        return <Fragment>
+            <Switch>
+                <Route exact path='/' render={(props) => <Login/>}/>
+                <Route exact path='/home' render={(props) => <Home {...props}/>}/>
+            </Switch>
+        </Fragment>
     }
 }
 
