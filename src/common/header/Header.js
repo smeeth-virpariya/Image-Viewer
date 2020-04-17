@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
 
 //Import of stylesheet for header component.
 import './Header.css';
@@ -6,7 +6,7 @@ import './Header.css';
 /**
  * Header Component serves header for multiple pages.
  */
-class Header extends Component{
+class Header extends Component {
 
     render() {
         return <div className='header-flex-container'>

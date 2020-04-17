@@ -11,6 +11,9 @@ import {
     Typography
 } from '@material-ui/core';
 
+//Router import for redirection.
+import {Redirect} from 'react-router-dom';
+
 //Imports Header component to be part of Login page.
 import Header from "../../common/header/Header";
 
@@ -36,11 +39,15 @@ class Login extends Component {
             password: '',
             usernameHelperTextDisplay: 'display-none',
             passwordHelperTextDisplay: 'display-none',
-            incorrectCredentialHelperTextDisplay: 'display-none'
+            incorrectCredentialHelperTextDisplay: 'display-none',
+            loginSuccess: false
         }
     }
 
     render() {
+        if (this.state.loginSuccess === true) {
+            return <Redirect to='/home'/>
+        }
         return <div>
             <div><Header/></div>
             <div className='login-card-flex-container'>
@@ -122,7 +129,7 @@ class Login extends Component {
 
         if (this.state.username !== '' && this.state.password !== '') {
             if (this.state.username === userDetails.username && this.state.password === userDetails.password) {
-                this.setState({incorrectCredentialHelperTextDisplay: 'display-none'});
+                this.setState({incorrectCredentialHelperTextDisplay: 'display-none', loginSuccess: true});
                 localStorage.setItem("access-token", userDetails.accessToken);
             } else {
                 this.setState({incorrectCredentialHelperTextDisplay: 'display-block'});

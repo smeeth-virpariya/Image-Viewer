@@ -1,4 +1,4 @@
-.header-flex-container{
+.header-flex-container {
     display: flex;
     flex-direction: row;
     background: #263238; /* Header background color */
