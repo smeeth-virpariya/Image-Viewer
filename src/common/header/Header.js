@@ -3,7 +3,7 @@ import React, {Component, Fragment} from 'react';
 //Import of stylesheet for header component.
 import './Header.css';
 
-import {Input, InputAdornment} from "@material-ui/core";
+import {Avatar, IconButton, Input, InputAdornment} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
 /**
@@ -25,12 +25,15 @@ class Header extends Component {
                         </div>
                         <div className='header-right-flex-container'>
                             <Input className='search-box' type='search' placeholder='Search...' disableUnderline
-                                   startAdornment={<InputAdornment
-                                       position="start"><SearchIcon/></InputAdornment>}></Input>
+                                   startAdornment={
+                                       <InputAdornment position="start"><SearchIcon/></InputAdornment>
+                                   }/>
+                            <IconButton>
+                                <Avatar alt="profile_picture"
+                                        src={this.props.profilePictureUrl}/>
+                            </IconButton>
                         </div>
                     </Fragment>
-
-
             }
         </div>
 
