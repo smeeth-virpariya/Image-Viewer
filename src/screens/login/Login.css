@@ -11,3 +11,16 @@
 .login-form-control {
     width: 350px;
 }
+
+.display-none {
+    display: none;
+}
+
+.display-block {
+    display: block;
+}
+
+.form-helper-text-red-color {
+    color: red;
+}
+
