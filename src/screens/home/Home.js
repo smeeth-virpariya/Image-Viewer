@@ -51,7 +51,7 @@ class Home extends Component {
                                             subheader={new Date(details.created_time * 1000).toLocaleString()}/>
                                 <CardContent>
                                     <img alt={details.id+'_image'} className='post-image' src={details.images.standard_resolution.url}/>
-                                    <hr/>
+                                    <hr className='horizontal-rule'/>
                                     <div className='post-caption'>{details.caption.text.split("\n")[0]}</div>
                                     {details.tags.map((tag, index) => (
                                         <span key={index}><a className='post-tags'

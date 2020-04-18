@@ -14,11 +14,17 @@
 .post-image {
     height: 640px;
     width: 640px;
+    margin-bottom: 5px;
+}
+
+.horizontal-rule{
+    border-top: 2px solid lightgray;
 }
 
 .post-caption {
     overflow: hidden;
     text-overflow: clip;
+    margin-top: 5px;
 }
 
 .post-tags{
