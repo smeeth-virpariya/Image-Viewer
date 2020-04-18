@@ -13,7 +13,6 @@ import {
     CardContent,
     CardHeader,
     FormControl,
-    GridList,
     Input,
     InputLabel
 } from '@material-ui/core'
@@ -46,12 +45,12 @@ class Home extends Component {
                 <div className='posts-card-container'>
                     {
                         (this.state.recent_media || []).map((details, index) => (
-                            <Card key={details.id} className='post-card'>
+                            <Card key={details.id+'_card'} className='post-card'>
                                 <CardHeader avatar={<Avatar src={details.user.profile_picture}/>}
                                             title={details.user.username}
                                             subheader={new Date(details.created_time * 1000).toLocaleString()}/>
                                 <CardContent>
-                                    <img className='post-image' src={details.images.standard_resolution.url}/>
+                                    <img alt={details.id+'_image'} className='post-image' src={details.images.standard_resolution.url}/>
                                     <hr/>
                                     <div className='post-caption'>{details.caption.text.split("\n")[0]}</div>
                                     {details.tags.map((tag, index) => (
