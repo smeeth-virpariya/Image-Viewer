@@ -6,7 +6,7 @@
 }
 
 .post-card {
-    margin: 15px;
+    margin: 10px;
     width: auto;
     height: fit-content;
 }
@@ -28,7 +28,7 @@
 }
 
 .post-tags{
-    text-decoration: none;
+    color: blue;
 }
 
 .likes {

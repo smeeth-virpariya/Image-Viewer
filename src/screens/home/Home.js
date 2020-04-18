@@ -17,6 +17,9 @@ import {
     InputLabel
 } from '@material-ui/core'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+
+import {red} from '@material-ui/core/colors';
 
 class Home extends Component {
 
@@ -25,7 +28,8 @@ class Home extends Component {
         this.baseUrl = 'https://api.instagram.com/v1/';
         this.state = {
             profile_picture: '',
-            recent_media: null
+            recent_media: null,
+            likes: []
         }
     }
 
@@ -35,6 +39,7 @@ class Home extends Component {
     }
 
     render() {
+        console.log(this.state.likes)
         console.log(this.state.recent_media)
         if (this.props.location.state === undefined) {
             return <Redirect to='/'/>
@@ -45,23 +50,33 @@ class Home extends Component {
                 <div className='posts-card-container'>
                     {
                         (this.state.recent_media || []).map((details, index) => (
-                            <Card key={details.id+'_card'} className='post-card'>
+                            <Card key={details.id + '_card'} className='post-card'>
                                 <CardHeader avatar={<Avatar src={details.user.profile_picture}/>}
                                             title={details.user.username}
                                             subheader={new Date(details.created_time * 1000).toLocaleString()}/>
                                 <CardContent>
-                                    <img alt={details.id+'_image'} className='post-image' src={details.images.standard_resolution.url}/>
+                                    <img alt={details.id + '_image'} className='post-image'
+                                         src={details.images.standard_resolution.url}/>
                                     <hr className='horizontal-rule'/>
                                     <div className='post-caption'>{details.caption.text.split("\n")[0]}</div>
-                                    {details.tags.map((tag, index) => (
-                                        <span key={index}><a className='post-tags'
-                                                             href={tag}>{'#' + tag + ' '}</a></span>)
-                                    )}
+                                    <div className='post-tags'>
+                                        {details.tags.map((tag, index) => (
+                                            <span key={index}>{'#' + tag + ' '}</span>)
+                                        )}
+                                    </div>
                                     <br/>
                                     <div className='likes'>
-                                        <FavoriteBorderIcon fontSize='default'/>
+                                        {
+                                            this.state.likes[index] ?
+                                                <FavoriteIcon fontSize='default' style={{color: red[500]}}
+                                                              onClick={() => this.onFavIconClick(index)}/>
+                                                :
+                                                <FavoriteBorderIcon fontSize='default'
+                                                                    onClick={() => this.onFavIconClick(index)}/>
+                                        }
+
                                         <pre> </pre>
-                                        <span>{details.likes.count + ' likes'}</span>
+                                        <span>{this.state.likes[index] ? details.likes.count + 1 + ' likes' : details.likes.count + ' likes'}</span>
                                     </div>
                                     <div className='post-comment'>
                                         <FormControl className='post-comment-form-control'>
@@ -121,6 +136,12 @@ class Home extends Component {
         xhr.open("GET", url);
 
         xhr.send(data);
+    }
+
+    onFavIconClick = (index) => {
+        let currentLikes = this.state.likes;
+        currentLikes[index] = !currentLikes[index];
+        this.setState({'likes': currentLikes})
     }
 }
 
