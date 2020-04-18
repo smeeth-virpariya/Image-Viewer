@@ -14,7 +14,7 @@ class ImageViewer extends Component {
     render() {
         return <Fragment>
             <Switch>
-                <Route exact path='/' render={(props) => <Login/>}/>
+                <Route exact path='/' render={(props) => <Login {...props}/>}/>
                 <Route exact path='/home' render={(props) => <Home {...props}/>}/>
             </Switch>
         </Fragment>

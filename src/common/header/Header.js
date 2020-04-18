@@ -36,7 +36,7 @@ class Header extends Component {
                     </div>
                     :
                     <Fragment>
-                        <div>
+                        <div onClick={() => this.onLogoClick()}>
                             <header className='logo'>Image Viewer</header>
                         </div>
                         <div className='header-right-flex-container'>
@@ -63,6 +63,9 @@ class Header extends Component {
         </div>
     }
 
+    onLogoClick = () => {
+        this.props.history.push('/home');
+    }
     onLogout = () => {
         sessionStorage.removeItem('access-token');
         this.setState({loggedOut: true})

@@ -14,7 +14,8 @@ import {
     CardHeader,
     FormControl,
     Input,
-    InputLabel
+    InputLabel,
+    TextField
 } from '@material-ui/core'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -29,7 +30,8 @@ class Home extends Component {
         this.state = {
             profile_picture: '',
             recent_media: null,
-            likes: []
+            likes: [],
+            comments: []
         }
     }
 
@@ -39,14 +41,14 @@ class Home extends Component {
     }
 
     render() {
-        console.log(this.state.likes)
+
         console.log(this.state.recent_media)
         if (this.props.location.state === undefined) {
             return <Redirect to='/'/>
         }
         if (this.props.location.state.loginSuccess === true) {
             return <div>
-                <div><Header isLoggedIn={true} profilePictureUrl={this.state.profile_picture}/></div>
+                <div><Header {...this.props} isLoggedIn={true} profilePictureUrl={this.state.profile_picture}/></div>
                 <div className='posts-card-container'>
                     {
                         (this.state.recent_media || []).map((details, index) => (
@@ -78,14 +80,25 @@ class Home extends Component {
                                         <pre> </pre>
                                         <span>{this.state.likes[index] ? details.likes.count + 1 + ' likes' : details.likes.count + ' likes'}</span>
                                     </div>
+                                    <div id='all-comments'>
+                                        {
+                                            this.state.comments[index] ?
+                                                (this.state.comments)[index].map((comment, index) => (
+                                                    <p key={index}><b>{details.user.username}</b> : {comment}</p>
+                                                ))
+                                                :
+                                                <p></p>
+                                        }
+                                    </div>
                                     <div className='post-comment'>
                                         <FormControl className='post-comment-form-control'>
-                                            <InputLabel htmlFor='comment'>Add a comment</InputLabel>
-                                            <Input className='comment-input' type='text'></Input>
+                                            <TextField id={'textfield-' + index} label="Add a comment"/>
                                         </FormControl>
+                                        {console.log(document.getElementById("textfield-" + index))}
                                         <div className='add-button'>
                                             <FormControl>
-                                                <Button variant='contained' color='primary'>ADD</Button>
+                                                <Button variant='contained' color='primary'
+                                                        onClick={() => this.onAddComment(index)}>ADD</Button>
                                             </FormControl>
                                         </div>
                                     </div>
@@ -142,6 +155,23 @@ class Home extends Component {
         let currentLikes = this.state.likes;
         currentLikes[index] = !currentLikes[index];
         this.setState({'likes': currentLikes})
+    }
+
+    onAddComment = (index) => {
+        var textfield = document.getElementById("textfield-" + index);
+        if (textfield.value == null || textfield.value.trim() === "") {
+            return;
+        }
+        let currentComment = this.state.comments;
+        if (currentComment[index] === undefined) {
+            currentComment[index] = [textfield.value];
+        } else {
+            currentComment[index] = currentComment[index].concat([textfield.value]);
+        }
+
+        textfield.value = '';
+
+        this.setState({'comments': currentComment})
     }
 }
 
