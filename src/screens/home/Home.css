@@ -1,0 +1,46 @@
+.posts-card-container {
+    margin: 1% 10% 1% 10%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: normal;
+}
+
+.post-card {
+    margin: 15px;
+    width: auto;
+    height: fit-content;
+}
+
+.post-image {
+    height: 640px;
+    width: 640px;
+}
+
+.post-caption {
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+.post-tags{
+    text-decoration: none;
+}
+
+.likes {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 10px 10px 10px;
+}
+
+.post-comment{
+    display: flex;
+}
+
+.post-comment-form-control {
+    width: 550px;
+}
+
+.add-button {
+    cursor: pointer;
+    margin: 20px;
+}
+
