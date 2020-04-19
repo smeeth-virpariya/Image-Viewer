@@ -40,10 +40,15 @@ class Header extends Component {
                             <header className='logo'>Image Viewer</header>
                         </div>
                         <div className='header-right-flex-container'>
-                            <Input className='search-box' type='search' placeholder='Search...' disableUnderline
-                                   startAdornment={
-                                       <InputAdornment position="start"><SearchIcon/></InputAdornment>
-                                   } onChange={this.props.onSearch}/>
+                            {
+                                this.props.showSearchBox ?
+                                    <Input className='search-box' type='search' placeholder='Search...' disableUnderline
+                                           startAdornment={
+                                               <InputAdornment position="start"><SearchIcon/></InputAdornment>
+                                           } onChange={this.props.onSearch}/>
+                                    :
+                                    null
+                            }
                             <IconButton id='profile-icon' onClick={this.onProfileIconClick}>
                                 <Avatar variant="circle" alt="profile_picture"
                                         src={this.props.profilePictureUrl}/>
@@ -52,7 +57,7 @@ class Header extends Component {
                                 <Menu open={this.state.menuState} onClose={this.onMenuClose}
                                       anchorEl={this.state.anchorEl} getContentAnchorEl={null}
                                       anchorOrigin={{vertical: "bottom", horizontal: "right"}} keepMounted>
-                                    <MenuItem><Typography>My Account</Typography></MenuItem>
+                                    <MenuItem onClick={this.onMyAccount}><Typography>My Account</Typography></MenuItem>
                                     <hr className='horizontal-line'/>
                                     <MenuItem onClick={this.onLogout}><Typography>Logout</Typography></MenuItem>
                                 </Menu>
@@ -66,6 +71,10 @@ class Header extends Component {
     onLogoClick = () => {
         this.props.history.push('/home');
     }
+    onMyAccount = () => {
+        this.props.history.push('/profile');
+    }
+
     onLogout = () => {
         sessionStorage.removeItem('access-token');
         this.setState({loggedOut: true})
