@@ -69,10 +69,25 @@ class Header extends Component {
     }
 
     onLogoClick = () => {
-        this.props.history.push('/home');
+        this.props.history.push({
+                pathname: '/home',
+                state:
+                    {
+                        loginSuccess:true
+                    }
+            }
+        )
+        ;
     }
+
     onMyAccount = () => {
-        this.props.history.push('/profile');
+        this.props.history.push({
+            pathname: '/profile',
+            state:
+                {
+                    loginSuccess:true
+                }
+        });
     }
 
     onLogout = () => {
