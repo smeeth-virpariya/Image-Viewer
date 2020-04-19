@@ -43,7 +43,7 @@ class Header extends Component {
                             <Input className='search-box' type='search' placeholder='Search...' disableUnderline
                                    startAdornment={
                                        <InputAdornment position="start"><SearchIcon/></InputAdornment>
-                                   }/>
+                                   } onChange={this.props.onSearch}/>
                             <IconButton id='profile-icon' onClick={this.onProfileIconClick}>
                                 <Avatar alt="profile_picture"
                                         src={this.props.profilePictureUrl}/>
