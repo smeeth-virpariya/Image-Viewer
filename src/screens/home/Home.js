@@ -93,7 +93,6 @@ class Home extends Component {
                                         <FormControl className='post-comment-form-control'>
                                             <TextField id={'textfield-' + index} label="Add a comment"/>
                                         </FormControl>
-                                        {console.log(document.getElementById("textfield-" + index))}
                                         <div className='add-button'>
                                             <FormControl>
                                                 <Button variant='contained' color='primary'
