@@ -44,11 +44,12 @@ class Profile extends Component {
                                     id="profile-pic"
                                     variant="circle"
                                     src={this.state.profile_picture}
+                                    style={{ marginTop: 10 }}
                                 />
                             ) : null}
                         </Grid>
                         <Grid item xs={4} id='user_name'>
-                            <Typography variant="h4" component="h1">
+                            <Typography variant="h4" component="h1" style={{ marginBottom: 5 }}>
                                 {this.state.recent_media
                                     ? this.state.user_data.username
                                     : null}
@@ -73,7 +74,7 @@ class Profile extends Component {
                                         : null}
                                 </Grid>
                             </Grid>
-                            <Typography variant="h6" component="h2">
+                            <Typography variant="h6" component="h2" style={{ marginTop: 5 }}>
                                 {this.state.user_data ? this.state.user_data.full_name : null}
                                 {this.state.user_data && !this.state.user_data.full_name
                                     ? this.state.user_data.full_name

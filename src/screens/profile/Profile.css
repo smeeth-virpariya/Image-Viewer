@@ -1,7 +1,6 @@
 .main_container{
     background: whitesmoke;
-    width: auto;
-    height: auto;
+    height: 100vh;
 }
 #profile-pic {
     width: 100px;
