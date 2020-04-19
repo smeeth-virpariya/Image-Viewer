@@ -51,7 +51,7 @@ class Home extends Component {
         if (this.props.location.state.loginSuccess === true) {
             return <div>
                 <div><Header {...this.props} isLoggedIn={true} showSearchBox={true} profilePictureUrl={this.state.profile_picture}
-                             onSearch={this.onSearch}/></div>
+                             onSearch={this.onSearch} showMyAccount={true}/></div>
                 <Container className='posts-card-container'>
                     <Grid container spacing={2} alignContent='center' justify='flex-start' direction='row'>
                         {

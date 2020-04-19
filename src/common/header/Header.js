@@ -6,7 +6,7 @@ import './Header.css';
 //Router import for redirection.
 import {Redirect} from 'react-router-dom';
 
-import {Avatar, IconButton, Input, InputAdornment, Menu, MenuItem, Typography} from "@material-ui/core";
+import {Avatar, Divider, IconButton, Input, InputAdornment, Menu, MenuItem, Typography} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
 
@@ -57,8 +57,15 @@ class Header extends Component {
                                 <Menu open={this.state.menuState} onClose={this.onMenuClose}
                                       anchorEl={this.state.anchorEl} getContentAnchorEl={null}
                                       anchorOrigin={{vertical: "bottom", horizontal: "right"}} keepMounted>
-                                    <MenuItem onClick={this.onMyAccount}><Typography>My Account</Typography></MenuItem>
-                                    <hr className='horizontal-line'/>
+                                    {
+                                        this.props.showMyAccount ?
+                                            <MenuItem onClick={this.onMyAccount}><Typography>My
+                                                Account</Typography></MenuItem> : null
+                                    }
+                                    {
+                                        this.props.showMyAccount ?
+                                            <Divider variant="middle"/> : null
+                                    }
                                     <MenuItem onClick={this.onLogout}><Typography>Logout</Typography></MenuItem>
                                 </Menu>
                             </div>
@@ -73,7 +80,7 @@ class Header extends Component {
                 pathname: '/home',
                 state:
                     {
-                        loginSuccess:true
+                        loginSuccess: true
                     }
             }
         )
@@ -85,7 +92,7 @@ class Header extends Component {
             pathname: '/profile',
             state:
                 {
-                    loginSuccess:true
+                    loginSuccess: true
                 }
         });
     }
