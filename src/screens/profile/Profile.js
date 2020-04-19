@@ -170,8 +170,9 @@ class Profile extends Component {
                             <Grid container spacing={1} direction="row" justify="center" alignItems="center">
                                 <Grid item xs={6}>
                                     {this.state.imageSelectedForDetails ? (
-                                        <img alt={this.state.imageSelectedForDetails.images.id} src={this.state.imageSelectedForDetails.images.standard_resolution.url}
-                                            style={{height: "100%", width: "100%"}}/>
+                                        <img alt={this.state.imageSelectedForDetails.images.id}
+                                             src={this.state.imageSelectedForDetails.images.standard_resolution.url}
+                                             style={{height: "100%", width: "100%"}}/>
                                     ) : null}
                                 </Grid>
                                 <Grid item xs={6} style={{minHeight: 'auto'}}>
@@ -211,7 +212,7 @@ class Profile extends Component {
                                                 this.state.comments[this.state.indexImageSelectedForDetails].length > 0 &&
                                                 this.state.comments[this.state.indexImageSelectedForDetails].map(comment => {
                                                     return (
-                                                        <p style={{fontSize: 16, fontWeight: "bold"}} key={comment}>
+                                                        <p style={{fontSize: 16}} key={comment}>
                                                             <b>{this.state.imageSelectedForDetails.user.username}:</b> {comment}
                                                         </p>
                                                     );
@@ -238,7 +239,7 @@ class Profile extends Component {
                                                             variant="contained"
                                                             id="add-comments-button"
                                                             color="primary"
-                                                            onClick={this.onAddComment}>Add</Button>
+                                                            onClick={() => this.onAddCommentSelectedImage()}>Add</Button>
                                                 </Grid>
                                             </Grid>
                                         </div>
@@ -349,6 +350,24 @@ class Profile extends Component {
         let l = this.state.liked;
         l[index] = !l[index];
         this.setState({liked: l})
+    }
+
+    onAddCommentSelectedImage = () => {
+        let index = this.state.indexImageSelectedForDetails;
+        var textbox = document.getElementById("add-user-comment-image");
+        if (textbox.value == null || textbox.value.trim() === "") {
+            return;
+        }
+        let c = this.state.comments;
+        if (c[index] == null) {
+            c[index] = [textbox.value];
+        } else {
+            c[index] = c[index].concat([textbox.value]);
+        }
+        this.setState({
+            comments: c,
+        })
+        textbox.value = '';
     }
 }
 
