@@ -45,7 +45,7 @@ class Header extends Component {
                                        <InputAdornment position="start"><SearchIcon/></InputAdornment>
                                    } onChange={this.props.onSearch}/>
                             <IconButton id='profile-icon' onClick={this.onProfileIconClick}>
-                                <Avatar alt="profile_picture"
+                                <Avatar variant="circle" alt="profile_picture"
                                         src={this.props.profilePictureUrl}/>
                             </IconButton>
                             <div>

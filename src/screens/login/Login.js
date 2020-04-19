@@ -82,7 +82,6 @@ class Login extends Component {
                         <FormHelperText className={this.state.incorrectCredentialHelperTextDisplay}><span
                             className='form-helper-text-red-color'>Incorrect username and/or password</span></FormHelperText>
                         <br/>
-                        <br/>
                         <FormControl>
                             <Button variant='contained' color='primary' onClick={this.onLogin}>Login</Button>
                         </FormControl>

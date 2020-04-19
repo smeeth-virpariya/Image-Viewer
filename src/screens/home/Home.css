@@ -1,8 +1,5 @@
 .posts-card-container {
     margin: 1% 10% 1% 10%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: normal;
 }
 
 .post-card {
@@ -12,9 +9,9 @@
 }
 
 .post-image {
-    height: 640px;
-    width: 640px;
-    margin-bottom: 5px;
+    height: 500px;
+    width: 500px;
+    margin: 5px;
 }
 
 .horizontal-rule {

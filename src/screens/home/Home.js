@@ -12,7 +12,11 @@ import {
     Card,
     CardContent,
     CardHeader,
+    CardMedia,
+    Container,
+    Divider,
     FormControl,
+    Grid,
     TextField
 } from '@material-ui/core'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -48,63 +52,68 @@ class Home extends Component {
             return <div>
                 <div><Header {...this.props} isLoggedIn={true} profilePictureUrl={this.state.profile_picture}
                              onSearch={this.onSearch}/></div>
-                <div className='posts-card-container'>
-                    {
-                        (this.state.filtered_media || []).map((details, index) => (
-                            <Card key={details.id + '_card'} className='post-card'>
-                                <CardHeader avatar={<Avatar src={details.user.profile_picture}/>}
+                <Container className='posts-card-container'>
+                    <Grid container spacing={2} alignContent='center' justify='flex-start' direction='row'>
+                        {
+                            (this.state.filtered_media || []).map((details, index) => (
+                                <Grid item xs={6} key={details.id}>
+                                    <Card key={details.id + '_card'}>
+                                        <CardHeader
+                                            avatar={<Avatar variant="circle" src={details.user.profile_picture}/>}
                                             title={details.user.username}
                                             subheader={new Date(details.created_time * 1000).toLocaleString()}/>
-                                <CardContent>
-                                    <img alt={details.id + '_image'} className='post-image'
-                                         src={details.images.standard_resolution.url}/>
-                                    <hr className='horizontal-rule'/>
-                                    <div className='post-caption'>{details.caption.text.split("\n")[0]}</div>
-                                    <div className='post-tags'>
-                                        {details.tags.map((tag, index) => (
-                                            <span key={index}>{'#' + tag + ' '}</span>)
-                                        )}
-                                    </div>
-                                    <br/>
-                                    <div className='likes'>
-                                        {
-                                            this.state.likes[index] ?
-                                                <FavoriteIcon fontSize='default' style={{color: red[500]}}
-                                                              onClick={() => this.onFavIconClick(index)}/>
-                                                :
-                                                <FavoriteBorderIcon fontSize='default'
-                                                                    onClick={() => this.onFavIconClick(index)}/>
-                                        }
+                                        <CardMedia style={{height: 0,paddingTop: '56.25%'}} image={details.images.standard_resolution.url}/>
+                                        <Divider variant="middle"/>
+                                        <CardContent>
+                                            <div className='post-caption'>{details.caption.text.split("\n")[0]}</div>
+                                            <div className='post-tags'>
+                                                {details.tags.map((tag, index) => (
+                                                    <span key={index}>{'#' + tag + ' '}</span>)
+                                                )}
+                                            </div>
+                                            <br/>
+                                            <div className='likes'>
+                                                {
+                                                    this.state.likes[index] ?
+                                                        <FavoriteIcon fontSize='default' style={{color: red[500]}}
+                                                                      onClick={() => this.onFavIconClick(index)}/>
+                                                        :
+                                                        <FavoriteBorderIcon fontSize='default'
+                                                                            onClick={() => this.onFavIconClick(index)}/>
+                                                }
 
-                                        <pre> </pre>
-                                        <span>{this.state.likes[index] ? details.likes.count + 1 + ' likes' : details.likes.count + ' likes'}</span>
-                                    </div>
-                                    <div id='all-comments'>
-                                        {
-                                            this.state.comments[index] ?
-                                                (this.state.comments)[index].map((comment, index) => (
-                                                    <p key={index}><b>{details.user.username}</b> : {comment}</p>
-                                                ))
-                                                :
-                                                <p></p>
-                                        }
-                                    </div>
-                                    <div className='post-comment'>
-                                        <FormControl className='post-comment-form-control'>
-                                            <TextField id={'textfield-' + index} label="Add a comment"/>
-                                        </FormControl>
-                                        <div className='add-button'>
-                                            <FormControl>
-                                                <Button variant='contained' color='primary'
-                                                        onClick={() => this.onAddComment(index)}>ADD</Button>
-                                            </FormControl>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        ))
-                    }
-                </div>
+                                                <pre> </pre>
+                                                <span>{this.state.likes[index] ? details.likes.count + 1 + ' likes' : details.likes.count + ' likes'}</span>
+                                            </div>
+                                            <div id='all-comments'>
+                                                {
+                                                    this.state.comments[index] ?
+                                                        (this.state.comments)[index].map((comment, index) => (
+                                                            <p key={index}><b>{details.user.username}</b> : {comment}
+                                                            </p>
+                                                        ))
+                                                        :
+                                                        <p></p>
+                                                }
+                                            </div>
+                                            <div className='post-comment'>
+                                                <FormControl className='post-comment-form-control'>
+                                                    <TextField id={'textfield-' + index} label="Add a comment"/>
+                                                </FormControl>
+                                                <div className='add-button'>
+                                                    <FormControl>
+                                                        <Button variant='contained' color='primary'
+                                                                onClick={() => this.onAddComment(index)}>ADD</Button>
+                                                    </FormControl>
+                                                </div>
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                            ))
+                        }
+                    </Grid>
+                </Container>
             </div>
         }
     }
@@ -180,7 +189,9 @@ class Home extends Component {
         if (this.state.searchText == null || this.state.searchText.trim() === "") {
             this.setState({filtered_media: this.state.recent_media});
         } else {
-            let filteredRecentMedia = this.state.recent_media.filter((element)=>{return element.caption.text.toUpperCase().split("\n")[0].indexOf(e.target.value.toUpperCase()) > -1});
+            let filteredRecentMedia = this.state.recent_media.filter((element) => {
+                return element.caption.text.toUpperCase().split("\n")[0].indexOf(e.target.value.toUpperCase()) > -1
+            });
             this.setState({filtered_media: filteredRecentMedia});
         }
     }
