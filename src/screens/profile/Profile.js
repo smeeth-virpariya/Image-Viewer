@@ -67,7 +67,7 @@ class Profile extends Component {
                 <Header {...this.props} isLoggedIn={true} showSearchBox={false}
                         profilePictureUrl={this.state.profile_picture} showMyAccount={false}/>
                 <Container>
-                    <div style={{height: "2rem"}}></div>
+                    <div style={{height: 32}}></div>
                     <Grid container spacing={3} justify="flex-start">
                         <Grid item xs={2}/>
                         <Grid item xs={2}>
@@ -171,7 +171,7 @@ class Profile extends Component {
                                     {this.state.imageSelectedForDetails ? (
                                         <img alt={this.state.imageSelectedForDetails.images.id}
                                              src={this.state.imageSelectedForDetails.images.standard_resolution.url}
-                                             style={{height: "auto", maxWidth: "100%", overflow: 'hidden'}}/>
+                                             style={{height: "100%",width: "100%"}}/>
                                     ) : null}
                                 </Grid>
                                 <Grid item xs={6}>

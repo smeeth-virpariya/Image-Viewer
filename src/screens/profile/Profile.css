@@ -56,21 +56,6 @@
     inline-size: fit-content;
 }
 
-.MuiGrid-spacing-xs-3 > .MuiGrid-item {
-    align-self: flex-end;
-    inline-size: fit-content;
-}
-
-.MuiGrid-spacing-xs-2 > .MuiGrid-item {
-    align-self: flex-start;
-    inline-size: fit-content;
-}
-
-.MuiGrid-grid-xs-6 {
-    height: 70%;
-    width: 70%;
-}
-
 .comment-section {
     min-height: 280px;
 }
