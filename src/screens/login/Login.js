@@ -62,17 +62,14 @@ class Login extends Component {
                         </FormControl>
                         <br/>
                         <br/>
-                        <Typography>
                             <FormControl required className='login-form-control'>
                                 <InputLabel htmlFor='username'>Username</InputLabel>
                                 <Input id='username' name='username' type='text' onChange={this.onUsernameFieldChange}/>
                                 <FormHelperText className={this.state.usernameHelperTextDisplay}><span
                                     className='form-helper-text-red-color'>required</span></FormHelperText>
                             </FormControl>
-                        </Typography>
                         <br/>
                         <br/>
-                        <Typography>
                             <FormControl required className='login-form-control'>
                                 <InputLabel htmlFor='password'>Password</InputLabel>
                                 <Input id='password' name='password' type='password'
@@ -80,19 +77,14 @@ class Login extends Component {
                                 <FormHelperText className={this.state.passwordHelperTextDisplay}><span
                                     className='form-helper-text-red-color'>required</span></FormHelperText>
                             </FormControl>
-                        </Typography>
                         <br/>
                         <br/>
-                        <Typography>
                             <FormHelperText className={this.state.incorrectCredentialHelperTextDisplay}><span
                                 className='form-helper-text-red-color'>Incorrect username and/or password</span></FormHelperText>
-                        </Typography>
                         <br/>
-                        <Typography>
                             <FormControl>
                                 <Button variant='contained' color='primary' onClick={this.onLogin}>Login</Button>
                             </FormControl>
-                        </Typography>
                     </CardContent>
                 </Card>
             </div>
