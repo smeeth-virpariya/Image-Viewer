@@ -32,12 +32,14 @@ class Header extends Component {
             {
                 this.props.isLoggedIn !== true ?
                     <div>
-                        <header className='logo'>Image Viewer</header>
+                        <Typography>
+                            <header className='logo'>Image Viewer</header>
+                        </Typography>
                     </div>
                     :
                     <Fragment>
                         <div onClick={() => this.onLogoClick()}>
-                            <header className='logo'>Image Viewer</header>
+                                <header className='logo'>Image Viewer</header>
                         </div>
                         <div className='header-right-flex-container'>
                             {
