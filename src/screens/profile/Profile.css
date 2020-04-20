@@ -1,4 +1,3 @@
-
 #profile-pic {
     width: 100px;
     height: 100px;
@@ -66,6 +65,13 @@
 
 .user-detail-section {
     vertical-align: top;
+
+}
+
+.divider{
+    padding-top: 1px;
+    padding-bottom: 1px;
+
 }
 
 .right-part{
