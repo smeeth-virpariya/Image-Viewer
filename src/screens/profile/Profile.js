@@ -166,81 +166,83 @@ class Profile extends Component {
 
                     <Modal open={this.state.openImageDetailModal} onClose={this.closeImageDetailsModal}>
                         <div className="selected-image-modal">
-                            <Grid container spacing={1} direction="row" justify="center" alignItems='flex-start'>
+                            <Grid container spacing={2} direction="row" justify="center" alignItems='flex-start'>
                                 <Grid item xs={6}>
                                     {this.state.imageSelectedForDetails ? (
                                         <img alt={this.state.imageSelectedForDetails.images.id}
                                              src={this.state.imageSelectedForDetails.images.standard_resolution.url}
-                                             style={{height:"auto", maxWidth: "100%",overflow:'hidden'}}/>
+                                             style={{height: "auto", maxWidth: "100%", overflow: 'hidden'}}/>
                                     ) : null}
                                 </Grid>
                                 <Grid item xs={6}>
                                     {this.state.imageSelectedForDetails ? (
-                                        <div className='right-part'>
-                                            <div className='upper-part'>
-                                            <Grid className="user-detail-section" container spacing={1} direction="row" >
-                                                <Grid item xs={2}>
-                                                    <Avatar id='modal-profile-pic'
-                                                            alt={this.state.imageSelectedForDetails.user.full_name}
-                                                            src={this.state.imageSelectedForDetails.user.profile_picture}
-                                                    />
-                                                </Grid>{" "}
-                                                <Grid item xs={10}>
-                                                    <Typography style={{paddingTop: 20, paddingLeft: 10}}>
-                                                        {this.state.imageSelectedForDetails.user.username}
+                                            <div className='right-part'>
+                                                <div className='upper-part'>
+                                                    <Grid className="user-detail-section" container spacing={1}
+                                                          direction="row">
+                                                        <Grid item xs={2}>
+                                                            <Avatar id='modal-profile-pic'
+                                                                    alt={this.state.imageSelectedForDetails.user.full_name}
+                                                                    src={this.state.imageSelectedForDetails.user.profile_picture}
+                                                            />
+                                                        </Grid>{" "}
+                                                        <Grid item xs={10}>
+                                                            <Typography style={{paddingTop: 20, paddingLeft: 10}}>
+                                                                {this.state.imageSelectedForDetails.user.username}
+                                                            </Typography>
+                                                        </Grid>
+                                                    </Grid>
+                                                    <Divider/>
+                                                    <Typography>
+                                                        {this.state.imageSelectedForDetails.caption.text.split("\n")[0]}
                                                     </Typography>
-                                                </Grid>
-                                            </Grid>
-                                            <Divider/>
-                                            <Typography>
-                                                {this.state.imageSelectedForDetails.caption.text.split("\n")[0]}
-                                            </Typography>
-                                            <Typography>
-                                                {this.state.imageSelectedForDetails.tags.map((tag, index) => (
-                                                        <span style={{color: "blue", fontSize: "14px"}}
-                                                              key={index}>{'#' + tag + ' '}</span>
-                                                    ))}
-                                            </Typography>
-                                            <Typography component="div" className="comment-section">
-                                                {this.state.comments &&
-                                                this.state.comments[this.state.indexImageSelectedForDetails] &&
-                                                this.state.comments[this.state.indexImageSelectedForDetails].length > 0 &&
-                                                this.state.comments[this.state.indexImageSelectedForDetails].map(comment => {
-                                                    return (
-                                                        <p style={{fontSize: 16}} key={comment}>
-                                                            <b>{this.state.imageSelectedForDetails.user.username}:</b> {comment}
-                                                        </p>
-                                                    );
-                                                })}
-                                            </Typography>
+                                                    <Typography>
+                                                        {this.state.imageSelectedForDetails.tags.map((tag, index) => (
+                                                            <span style={{color: "blue", fontSize: "14px"}}
+                                                                  key={index}>{'#' + tag + ' '}</span>
+                                                        ))}
+                                                    </Typography>
+                                                    <Typography component="div" className="comment-section">
+                                                        {this.state.comments &&
+                                                        this.state.comments[this.state.indexImageSelectedForDetails] &&
+                                                        this.state.comments[this.state.indexImageSelectedForDetails].length > 0 &&
+                                                        this.state.comments[this.state.indexImageSelectedForDetails].map(comment => {
+                                                            return (
+                                                                <p style={{fontSize: 16}} key={comment}>
+                                                                    <b>{this.state.imageSelectedForDetails.user.username}:</b> {comment}
+                                                                </p>
+                                                            );
+                                                        })}
+                                                    </Typography>
+                                                </div>
+                                                <div className='lower-part'>
+                                                    <CardActions disableSpacing>
+                                                        <IconButton onClick={() => this.onLikeSelectedImage()}>
+                                                            {this.state.liked[this.state.indexImageSelectedForDetails] ?
+                                                                <FavoriteIcon style={{color: red[500]}}/>
+                                                                :
+                                                                <FavoriteBorderIcon/>}
+                                                        </IconButton>
+                                                        <span>{this.state.liked[this.state.indexImageSelectedForDetails] ? this.state.imageSelectedForDetails.likes.count + 1 : this.state.imageSelectedForDetails.likes.count} likes</span>
+                                                    </CardActions>
+                                                    <Grid className="comment-add-section" container spacing={3}
+                                                          alignItems='flex-end'>
+                                                        <Grid item xs={10}>
+                                                            <TextField id="add-user-comment-image"
+                                                                       className="add-comment-text-field"
+                                                                       label="Add a comment"
+                                                                       fullWidth={true}/>
+                                                        </Grid>
+                                                        <Grid item xs={2} className="add-button-grid">
+                                                            <Button className="add-button"
+                                                                    variant="contained"
+                                                                    id="add-comments-button"
+                                                                    color="primary"
+                                                                    onClick={() => this.onAddCommentSelectedImage()}>Add</Button>
+                                                        </Grid>
+                                                    </Grid>
+                                                </div>
                                             </div>
-                                            <div className='lower-part'>
-                                            <CardActions disableSpacing>
-                                                <IconButton aria-label="add to favorites"
-                                                            onClick={() => this.onLikeSelectedImage()}>
-                                                    {this.state.liked[this.state.indexImageSelectedForDetails] ?
-                                                        <FavoriteIcon style={{color: red[500]}}/>
-                                                        :
-                                                        <FavoriteBorderIcon/>}
-                                                </IconButton>
-                                                <span>{this.state.liked[this.state.indexImageSelectedForDetails] ? this.state.imageSelectedForDetails.likes.count + 1 : this.state.imageSelectedForDetails.likes.count} likes</span>
-                                            </CardActions>
-                                            <Grid className="comment-add-section" container spacing={3} alignItems='flex-end'>
-                                                <Grid item xs={10}>
-                                                    <TextField id="add-user-comment-image"
-                                                               className="add-comment-text-field" label="Add a comment"
-                                                               fullWidth={true}/>
-                                                </Grid>
-                                                <Grid item xs={2} className="add-button-grid">
-                                                    <Button className="add-button"
-                                                            variant="contained"
-                                                            id="add-comments-button"
-                                                            color="primary"
-                                                            onClick={() => this.onAddCommentSelectedImage()}>Add</Button>
-                                                </Grid>
-                                            </Grid>
-                                            </div>
-                                        </div>
                                     ) : null}
                                 </Grid>
                             </Grid>
