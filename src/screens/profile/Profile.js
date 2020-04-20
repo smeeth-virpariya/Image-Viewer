@@ -162,30 +162,29 @@ class Profile extends Component {
                         ))}
                     </Grid>
 
-                    <Modal
-                        open={this.state.openImageDetailModal}
-                        onClose={this.closeImageDetailsModal}
-                    >
+                    <Modal open={this.state.openImageDetailModal} onClose={this.closeImageDetailsModal}>
                         <div className="selected-image-modal">
-                            <Grid container spacing={1} direction="row" justify="center" alignItems="center">
+                            <Grid container spacing={1} direction="row" justify="center" alignItems='flex-start'>
                                 <Grid item xs={6}>
                                     {this.state.imageSelectedForDetails ? (
                                         <img alt={this.state.imageSelectedForDetails.images.id}
                                              src={this.state.imageSelectedForDetails.images.standard_resolution.url}
-                                             style={{height: "100%", width: "100%"}}/>
+                                             style={{height:"auto", maxWidth: "100%",overflow:'hidden'}}/>
                                     ) : null}
                                 </Grid>
-                                <Grid item xs={6} style={{minHeight: 'auto'}}>
+                                <Grid item xs={6}>
                                     {this.state.imageSelectedForDetails ? (
-                                        <div>
-                                            <Grid className="user-detail-section" container spacing={1} direction="row">
-                                                <Grid item xs={4}>
-                                                    <Avatar alt={this.state.imageSelectedForDetails.user.full_name}
+                                        <div className='right-part'>
+                                            <div className='upper-part'>
+                                            <Grid className="user-detail-section" container spacing={1} direction="row" >
+                                                <Grid item xs={2}>
+                                                    <Avatar id='modal-profile-pic'
+                                                            alt={this.state.imageSelectedForDetails.user.full_name}
                                                             src={this.state.imageSelectedForDetails.user.profile_picture}
                                                     />
                                                 </Grid>{" "}
-                                                <Grid item xs={8}>
-                                                    <Typography>
+                                                <Grid item xs={10}>
+                                                    <Typography style={{paddingTop: 20, paddingLeft: 10}}>
                                                         {this.state.imageSelectedForDetails.user.username}
                                                     </Typography>
                                                 </Grid>
@@ -195,16 +194,10 @@ class Profile extends Component {
                                                 {this.state.imageSelectedForDetails.caption.text.split("\n")[0]}
                                             </Typography>
                                             <Typography>
-                                                {this.state.imageSelectedForDetails.tags.map(tag => {
-                                                    return (
-                                                        <span
-                                                            style={{color: "blue", fontSize: "14px"}}
-                                                            key={tag}
-                                                        >
-                                                    #{tag}{" "}
-                                                </span>
-                                                    );
-                                                })}
+                                                {this.state.imageSelectedForDetails.tags.map((tag, index) => (
+                                                        <span style={{color: "blue", fontSize: "14px"}}
+                                                              key={index}>{'#' + tag + ' '}</span>
+                                                    ))}
                                             </Typography>
                                             <Typography component="div" className="comment-section">
                                                 {this.state.comments &&
@@ -218,6 +211,8 @@ class Profile extends Component {
                                                     );
                                                 })}
                                             </Typography>
+                                            </div>
+                                            <div className='lower-part'>
                                             <CardActions disableSpacing>
                                                 <IconButton aria-label="add to favorites"
                                                             onClick={() => this.onLikeSelectedImage()}>
@@ -228,7 +223,7 @@ class Profile extends Component {
                                                 </IconButton>
                                                 <span>{this.state.liked[this.state.indexImageSelectedForDetails] ? this.state.imageSelectedForDetails.likes.count + 1 : this.state.imageSelectedForDetails.likes.count} likes</span>
                                             </CardActions>
-                                            <Grid className="comment-add-section" container spacing={3}>
+                                            <Grid className="comment-add-section" container spacing={3} alignItems='flex-end'>
                                                 <Grid item xs={10}>
                                                     <TextField id="add-user-comment-image"
                                                                className="add-comment-text-field" label="Add a comment"
@@ -242,6 +237,7 @@ class Profile extends Component {
                                                             onClick={() => this.onAddCommentSelectedImage()}>Add</Button>
                                                 </Grid>
                                             </Grid>
+                                            </div>
                                         </div>
                                     ) : null}
                                 </Grid>
