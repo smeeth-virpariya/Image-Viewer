@@ -64,21 +64,18 @@ class Home extends Component {
                                                             className='avatar'/>}
                                             title={details.user.username}
                                             subheader={new Date(details.created_time * 1000).toLocaleString()}/>
-                                        <CardMedia style={{height: 0, paddingTop: '56.25%'}}
+                                        <CardMedia style={{height: 0, paddingTop: '56.25%',marginBottom:5}}
                                                    image={details.images.standard_resolution.url}/>
-                                        <Divider variant="middle"/>
+                                        <Divider variant="middle" className='divider'/>
                                         <CardContent>
-                                            <Typography>
-                                                <div
-                                                    className='post-caption'>{details.caption.text.split("\n")[0]}</div>
-                                            </Typography>
-                                            <Typography>
-                                                <div className='post-tags'>
-                                                    {details.tags.map((tag, index) => (
-                                                        <span key={index}>{'#' + tag + ' '}</span>)
-                                                    )}
-                                                </div>
-                                            </Typography>
+                                            <div
+                                                className='post-caption'>{details.caption.text.split("\n")[0]}</div>
+
+                                            <div className='post-tags'>
+                                                {details.tags.map((tag, index) => (
+                                                    <span key={index}>{'#' + tag + ' '}</span>)
+                                                )}
+                                            </div>
                                             <br/>
                                             <div className='likes'>
                                                 {
@@ -95,33 +92,29 @@ class Home extends Component {
                                                     <span>{this.state.likes[index] ? details.likes.count + 1 + ' likes' : details.likes.count + ' likes'}</span>
                                                 </Typography>
                                             </div>
-                                            <Typography>
-                                                <div id='all-comments'>
-                                                    {
-                                                        this.state.comments[index] ?
-                                                            (this.state.comments)[index].map((comment, index) => (
-                                                                <p key={index}>
-                                                                    <b>{details.user.username}</b> : {comment}
-                                                                </p>
-                                                            ))
-                                                            :
-                                                            <p></p>
-                                                    }
-                                                </div>
-                                            </Typography>
+
+                                            <div id='all-comments'>
+                                                {
+                                                    this.state.comments[index] ?
+                                                        (this.state.comments)[index].map((comment, index) => (
+                                                            <p key={index}>
+                                                                <b>{details.user.username}</b> : {comment}
+                                                            </p>
+                                                        ))
+                                                        :
+                                                        <p></p>
+                                                }
+                                            </div>
+
                                             <div className='post-comment'>
-                                                <Typography>
                                                 <FormControl className='post-comment-form-control'>
                                                     <TextField id={'textfield-' + index} label="Add a comment"/>
                                                 </FormControl>
-                                                </Typography>
                                                 <div className='add-button'>
-                                                    <Typography>
                                                     <FormControl>
                                                         <Button variant='contained' color='primary'
                                                                 onClick={() => this.onAddComment(index)}>ADD</Button>
                                                     </FormControl>
-                                                        </Typography>
                                                 </div>
                                             </div>
                                         </CardContent>

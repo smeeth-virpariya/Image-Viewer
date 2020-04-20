@@ -39,9 +39,7 @@ class Header extends Component {
                     :
                     <Fragment>
                         <div onClick={() => this.onLogoClick()}>
-                            <Typography>
                                 <header className='logo'>Image Viewer</header>
-                            </Typography>
                         </div>
                         <div className='header-right-flex-container'>
                             {
