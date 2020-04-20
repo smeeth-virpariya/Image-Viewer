@@ -40,8 +40,10 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        this.fetchOwnerInfo();
-        this.fetchMostRecentMedia();
+        if (this.props.location.state !== undefined) {
+            this.fetchOwnerInfo();
+            this.fetchMostRecentMedia();
+        }
     }
 
     render() {
@@ -64,7 +66,7 @@ class Home extends Component {
                                                             className='avatar'/>}
                                             title={details.user.username}
                                             subheader={new Date(details.created_time * 1000).toLocaleString()}/>
-                                        <CardMedia style={{height: 0, paddingTop: '56.25%',marginBottom:5}}
+                                        <CardMedia style={{height: 0, paddingTop: '56.25%', marginBottom: 5}}
                                                    image={details.images.standard_resolution.url}/>
                                         <Divider variant="middle" className='divider'/>
                                         <CardContent>
