@@ -32,9 +32,7 @@ class Header extends Component {
             {
                 this.props.isLoggedIn !== true ?
                     <div>
-                        <Typography>
                             <header className='logo'>Image Viewer</header>
-                        </Typography>
                     </div>
                     :
                     <Fragment>
