@@ -59,7 +59,7 @@ class Home extends Component {
                                 <Grid item xs={6} key={details.id}>
                                     <Card key={details.id + '_card'}>
                                         <CardHeader
-                                            avatar={<Avatar variant="circle" src={details.user.profile_picture}/>}
+                                            avatar={<Avatar variant="circle" src={details.user.profile_picture} className='avatar'/>}
                                             title={details.user.username}
                                             subheader={new Date(details.created_time * 1000).toLocaleString()}/>
                                         <CardMedia style={{height: 0,paddingTop: '56.25%'}} image={details.images.standard_resolution.url}/>
