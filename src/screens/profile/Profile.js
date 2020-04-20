@@ -52,8 +52,10 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-        this.fetchOwnerInfo();
-        this.fetchMostRecentMedia();
+        if (this.props.location.state !== undefined) {
+            this.fetchOwnerInfo();
+            this.fetchMostRecentMedia();
+        }
     }
 
 
@@ -81,7 +83,7 @@ class Profile extends Component {
                         </Grid>
                         <Grid item xs={5} id='user_name'>
                             <Typography variant="h4" component="h1" style={{marginBottom: 5}}>
-                                {this.state.recent_media
+                                {this.state.user_data
                                     ? this.state.user_data.username
                                     : null}
                             </Typography>
